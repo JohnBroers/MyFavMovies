@@ -1,33 +1,35 @@
-// Requirements
-var gulp = require('gulp'),
-	sass = require('gulp-ruby-sass');
-	prefix = require('gulp-autoprefixer');
-	manifest = require('gulp-manifest');
+const { src, dest, watch, series } = require('gulp');
+const sass = require('gulp-sass');
+const prefix = require('gulp-autoprefixer');
+const manifest = require('gulp-manifest');
 
-var sassRoot = 'build/sass/';
-var publicRoot = 'public/static/'
+const sassRoot = 'build/sass/';
+const publicRoot = 'public/static/'
 
-gulp.task('sass-to-css', function(){
-	return gulp.src(sassRoot+'main.scss')
-	.pipe(sass())
-	.pipe(prefix("last 3 versions"))
-	.pipe(gulp.dest(publicRoot+'css'));
-});
+function compileSass(done) {
+  src(sassRoot+'main.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(prefix("last 3 versions"))
+  .pipe(dest(publicRoot+'css'));
+ done();
+}
 
-gulp.task('manifest', function(){
-  gulp.src(['public/**'])
-    .pipe(manifest({
-      hash: true,
-      preferOnline: true,
-      network: ['http://*', 'https://*', '*'],
-      filename: 'app.manifest',
-      exclude: ['app.manifest', 'static/css/main.css.map']
-     }))
-    .pipe(gulp.dest('public'));
-});
+function createManifest(done) {
+  src('public/**')
+  .pipe(manifest({
+    hash: true,
+    preferOnline: true,
+    network: ['http://*', 'https://*', '*'],
+    filename: 'app.manifest',
+    exclude: ['app.manifest', 'static/css/main.css.map']
+  }))
+  .pipe(dest('public'));
+  done();
+}
 
-gulp.task('watch', function() {
-	gulp.watch(sassRoot+'*.scss', ['sass-to-css']);
-});
+function watchSass() {
+  watch(sassRoot + '*.scss', compileSass);
+}
 
-gulp.task('default', ['sass-to-css', 'watch', 'manifest']);
+exports.default = series(compileSass);
+exports.watch = series(compileSass, watchSass);
