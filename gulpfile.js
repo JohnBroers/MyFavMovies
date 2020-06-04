@@ -4,7 +4,7 @@ const prefix = require('gulp-autoprefixer');
 const manifest = require('gulp-manifest');
 
 const sassRoot = 'build/sass/';
-const publicRoot = 'dist/static/'
+const publicRoot = 'docs/static/'
 
 function compileSass(done) {
   src(sassRoot+'main.scss')
@@ -15,7 +15,7 @@ function compileSass(done) {
 }
 
 function createManifest(done) {
-  src('dist/**')
+  src('docs/**')
   .pipe(manifest({
     hash: true,
     preferOnline: true,
@@ -23,7 +23,7 @@ function createManifest(done) {
     filename: 'app.manifest',
     exclude: ['app.manifest', 'static/css/main.css.map']
   }))
-  .pipe(dest('dist'));
+  .pipe(dest('docs'));
   done();
 }
 
