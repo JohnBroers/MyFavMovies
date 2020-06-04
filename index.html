@@ -1,0 +1,92 @@
+<!doctype html>
+<html manifest="app.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Web App V1, basic JavaScript Skeleton">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<title>My Favorite Movies</title>
+	<link rel="stylesheet" href="static/css/main.css">
+	<link rel="author" href="humans.txt">
+</head>
+<body>
+	<main id="content">
+		<section id="loading">
+			<div class="spinner">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
+		</section>
+		<section id="home">
+			<h1 data-bind="titel">myFavMovies</h1>
+			<p>You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man.</p>
+			<h2>Highest rated movie</h2>
+			<h3 data-bind="title"></h3>
+			<img src="" data-bind="imageUrl">
+			<a href="#movies">Bekijk de volledige lijst</a>
+		</section>
+		<section id="about">
+			<header>
+				<h1 data-bind="titel"></h1>
+			</header>
+			<p data-bind="description"></p>
+		</section>
+		<section id="movieWrapper">
+			<div id="genre" class="orderselect">Sortby</div>
+			<ul id="genrechoise">
+				<li><a href="#movies">Normaal</a></li>
+				<li><a href="#movies/ratingdesc">Sort op rating (desc)</a></li>
+				<li><a href="#movies/ratingasc">Sort op rating (asc)</a></li>
+				<li><a href="#movies/name">Sort op naam</a></li>
+				<li><a href="#movies/popularity">Sort op populariteit</a></li>
+			</ul>
+			<div id="movieContent">
+				<article>
+					<header>
+						<h1 data-bind="title"></h1>
+						<p data-bind="vote_average"></p>
+					</header>
+					<img src="" data-bind="imageUrl">
+					<p data-bind="releaseDate"></p>
+					<a href="" data-bind="detailLink"></a>
+	 			</article>
+	 		</div>
+		</section>
+		<section id="movie">
+			<header>
+				<h1 data-bind="original_title"></h1>
+				<p data-bind="tagline"></p>
+			</header>
+			<img data-bind="imageUrl" src="">
+			<h2>Overview</h2>
+			<p data-bind="overview"></p>
+			<h2>Genres</h2>
+			<ul data-bind="genres">
+				<li data-bind="name"></li>
+			</ul>
+			<h2>Rating</h2>
+			<div class="ratingcover">
+				<img src="static/images/rating.png" alt="" />
+				<progress data-bind="sterren" value="" max="100"></progress>
+			</div>
+			<p data-bind="stemmen"></p>
+		</section>
+	</main>
+
+	<header>
+		<a href="index.html"><h1>myFavMovies</h1></a>
+		<nav>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a id="movieOverzicht" href="#movies">Movies</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<script src="static/js/vendor/routie.js"></script>
+	<script src="static/js/vendor/transparency.js"></script>
+	<script src="static/js/vendor/underscore.js"></script>
+	<script src="static/js/vendor/hammer.min.js"></script>
+	<script src="static/js/app.js"></script>
+</body>
+</html>
