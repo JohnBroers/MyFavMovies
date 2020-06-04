@@ -105,7 +105,7 @@ var favMovies = favMovies || {};
                 Transparency.render(document.getElementById('movieContent'), goodData, favMovies.config.directives); 
             } else {
                 // Als er geen localstorage is wordt er met de API data opgehaald.
-                favMovies.config.xhr('GET', 'http://api.themoviedb.org/3/list/5454b8dbc3a3681478003cf7?api_key=56506e6256a280dcd69573fa48f1f3fd', function(response) { 
+                favMovies.config.xhr('GET', 'https://api.themoviedb.org/3/list/5454b8dbc3a3681478003cf7?api_key=56506e6256a280dcd69573fa48f1f3fd', function(response) { 
                     // De response van de request wordt eerst gemanipuleerd en daar in de localStorage gezet.
                     favMovies.config.manipulateData(response);
                     // Data wordt weer opgehaald uit de localstorage.
@@ -150,7 +150,7 @@ var favMovies = favMovies || {};
                 });
                 Transparency.render(document.getElementById('home'), goodSingleData[0], favMovies.config.directives);
             } else {
-                favMovies.config.xhr('GET', 'http://api.themoviedb.org/3/list/5454b8dbc3a3681478003cf7?api_key=56506e6256a280dcd69573fa48f1f3fd', function(response) { 
+                favMovies.config.xhr('GET', 'https://api.themoviedb.org/3/list/5454b8dbc3a3681478003cf7?api_key=56506e6256a280dcd69573fa48f1f3fd', function(response) { 
                     // De response van de request wordt eerst gemanipuleerd en daar in de localStorage gezet.
                     favMovies.config.manipulateData(response);
                     // Data wordt weer opgehaald uit de localstorage.
@@ -222,7 +222,7 @@ var favMovies = favMovies || {};
             },
             imageUrl: {
                 src: function() {
-                    return "http://image.tmdb.org/t/p/w500" + this.poster_path;
+                    return "https://image.tmdb.org/t/p/w500" + this.poster_path;
                 }
             },
             releaseDate: {
@@ -276,7 +276,7 @@ var favMovies = favMovies || {};
         },
         jsonpData: function(id) {
             var script = document.createElement("script"); 
-            script.src = 'http://api.themoviedb.org/3/movie/'+ id + '?api_key=56506e6256a280dcd69573fa48f1f3fd&callback=favMovies.section.movie'; 
+            script.src = 'https://api.themoviedb.org/3/movie/'+ id + '?api_key=56506e6256a280dcd69573fa48f1f3fd&callback=favMovies.section.movie'; 
             document.body.appendChild(script); 
         },
         orderBy: function() {
